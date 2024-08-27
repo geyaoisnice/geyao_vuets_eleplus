@@ -1,1 +1,2 @@
-# geyao_vuets_eleplus
+# 开发环境
+node 版本 18.16.1
