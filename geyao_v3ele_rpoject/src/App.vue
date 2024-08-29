@@ -1,5 +1,5 @@
 <template>
-  11111
+  <router-view></router-view>
 </template>
 <script>
 import {getDataApi} from "./api/index.ts"
