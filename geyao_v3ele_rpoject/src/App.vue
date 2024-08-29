@@ -5,11 +5,15 @@
 import {getDataApi} from "./api/index.ts"
 import {onMounted} from "vue"
 let getData = () => {
-
- 	getDataApi().then((res) => {
+  let params ={
+    pageIndex:1,
+    pageSize:10,
+    username:"admin"
+  }
+ 	getDataApi(params).then((res) => {
     let resData = res.data.data
   })
   console.log(222222)
 }
-getDataApi()
+getData()
 </script>
