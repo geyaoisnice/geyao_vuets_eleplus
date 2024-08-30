@@ -4,7 +4,7 @@
         <div class="content">
           <h4>{{ title }}登录</h4>
           <div class="qr-code-area" v-if="loginType === 'qrcode'">
-            <img src="@/assets/myblog.png" alt="myblog-qrcode" />
+            <!-- <img src="@/assets/myblog.png" alt="myblog-qrcode" /> -->
           </div>
           <div v-else class="account-area">
             <el-form ref="formRef" :rules="loginRules" :model="loginForm" label-width="auto"
@@ -111,8 +111,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(@/assets/bg.jpg);
-    @extend %bg;
+    background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
   }
   .container {
     width: 350px;
