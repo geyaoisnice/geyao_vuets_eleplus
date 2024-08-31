@@ -2,40 +2,33 @@
     <div class="login">
       <div class="container">
         <div class="content">
-          <h4>{{ title }}登录</h4>
+          <h4>歌谣后台管理系统</h4>
           <div class="qr-code-area" v-if="loginType === 'qrcode'">
             <!-- <img src="@/assets/myblog.png" alt="myblog-qrcode" /> -->
           </div>
-          <div v-else class="account-area">
+          <div v-else class="username-area">
             <el-form ref="formRef" :rules="loginRules" :model="loginForm" label-width="auto"
               :hide-required-asterisk="true">
-              <el-form-item label="手机号" prop="account">
-                <el-input v-model="loginForm.account" placeholder="请输入手机号码">
-                  <template #prepend>+86</template>
+              <el-form-item label="手机号" prop="username">
+                <el-input v-model="loginForm.username" placeholder="请输入用户名">
+                  <template #prepend>
+                    <el-icon><User /></el-icon>
+                  </template>
                 </el-input>
               </el-form-item>
-              <el-form-item v-if="loginType === 'password'" prop="password" label="密码">
-                <el-input v-model="loginForm.password" placeholder="请输入密码"></el-input>
-              </el-form-item>
-              <el-form-item v-if="loginType === 'vetifycode'" prop="vetifycode" label="验证码">
-                <el-input v-model="loginForm.verifyCode" placeholder="请输入六位验证码" maxlength="6">
-                  <template #append>
-                    <el-button type="primary" @click="handleSendVerifyCode">获取验证码</el-button>
+              <el-form-item  prop="password" label="密码">
+                <el-input v-model="loginForm.password" placeholder="请输入密码">
+                  <template #prepend>
+                    <el-icon><Lock /></el-icon>
                   </template>
                 </el-input>
               </el-form-item>
             </el-form>
-            <router-link class="forget-area" v-if="loginType === 'password'" to="">忘记密码</router-link>
             <div class="operation-area">
               <el-button class="submit-btn" type="primary" @click="handleLogin">登录</el-button>
             </div>
           </div>
-          <div class="change-login-type">
-            <div :class="['login-type', loginType === 'vetifycode' && 'active']" @click="loginType = 'vetifycode'">手机号
-            </div>
-            <div :class="['login-type', loginType === 'password' && 'active']" @click="loginType = 'password'">账号密码</div>
-            <div :class="['login-type', loginType === 'qrcode' && 'active']" @click="loginType = 'qrcode'">二维码</div>
-          </div>
+        
         </div>
       </div>
     </div>
@@ -44,36 +37,20 @@
   import { ElMessage } from 'element-plus';
   import { computed, reactive, ref, watch } from 'vue';
   const loginRules = {
-    account: [
-      { required: true, message: '请输入手机号码', trigger: 'blur' },
-      { pattern: /^1\d{10}$/, message: "请输入正确的手机号码", trigger: "blur" }
+    username: [
+      { required: true, message: '请输入用户名', trigger: 'blur' },
     ],
     password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
   }
   const formRef = ref<HTMLFormElement>(null);
   const loginForm = reactive({
-    account: '',
+    username: '',
     password: '',
     verifyCode: ''
   });
-  const loginType = ref<'password' | 'vetifycode' | 'qrcode'>('vetifycode');
-  const title = computed(() => {
-    switch (loginType.value) {
-      case 'password':
-        return '账号密码'
-      case 'vetifycode':
-        return '短信验证码'
-      case 'qrcode':
-        return '扫码'
-      default:
-        return ''
-    }
-  })
-  watch(loginType, () => {
-    formRef?.value?.resetFields();
-  })
+
   const handleSendVerifyCode = () => {
-    formRef.value.validateField('account', (valid: boolean) => {
+    formRef.value.validateField('username', (valid: boolean) => {
       if (valid) {
         ElMessage.info('您的验证码为：005114')
       }
@@ -87,8 +64,8 @@
           return ElMessage.error('验证码错误')
         }
         let message = '登录成功'
-        if (loginForm.account) {
-          message += ',登录的账号为' + loginForm.account;
+        if (loginForm.username) {
+          message += ',登录的账号为' + loginForm.username;
         }
         if (loginForm.password) {
           message += ',登录的密码为' + loginForm.password;
@@ -127,7 +104,7 @@
         rgba(53, 57, 74, 0) 0%,
         rgb(0, 0, 0) 100%);
   }
-  .account-area {
+  .username-area {
     margin-top: 50px;
   }
   :deep(.el-form-item__label) {
@@ -151,27 +128,5 @@
   .submit-btn {
     margin: 50px 0 30px 0;
     width: 100%;
-  }
-  .change-login-type {
-    display: flex;
-    border-top: 1px solid #eee;
-    justify-content: space-between;
-    padding-top: 10px;
-    .login-type {
-      font-size: 12px;
-      line-height: 16px;
-      text-align: center;
-      color: #fff;
-      width: 25%;
-      position: relative;
- 
-      &:hover {
-        cursor: pointer;
-        color: #267EF0;
-      }
-    }
-    .active {
-      color: #267EF0;
-    }
   }
   </style>
