@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const service = axios.create({
+const request = axios.create({
     baseURL: '/',
     timeout: 100000
 })
 
-export default service
+export default request
 
