@@ -3,7 +3,7 @@
         <el-header>歌谣后台管理系统</el-header>
     </div>
 </template>
-<style scoped lang="scss">
+<style scoped>
 .gy-header {
     width: 100%;
     height: 80px;

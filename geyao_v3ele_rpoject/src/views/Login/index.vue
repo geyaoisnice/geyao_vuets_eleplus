@@ -3,10 +3,7 @@
       <div class="container">
         <div class="content">
           <h4>歌谣后台管理系统</h4>
-          <div class="qr-code-area" v-if="loginType === 'qrcode'">
-            <!-- <img src="@/assets/myblog.png" alt="myblog-qrcode" /> -->
-          </div>
-          <div v-else class="username-area">
+          <div class="username-area">
             <el-form ref="formRef" :rules="loginRules" :model="loginForm" label-width="auto"
               :hide-required-asterisk="true">
               <el-form-item label="手机号" prop="username">
@@ -80,7 +77,7 @@
     })
   }
   </script>
-  <style lang="scss" scoped>
+  <style  scoped>
   .login {
     min-height: 675px;
     height: 100vh;

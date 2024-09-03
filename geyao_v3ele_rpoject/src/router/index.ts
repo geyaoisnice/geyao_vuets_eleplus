@@ -13,7 +13,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
   {
     path: '/index',
     component: () => import('../views/Layout/index.vue'),
-    name: 'Login',
+    name: 'Index',
     meta: {
       hidden: true,
     },

@@ -26,7 +26,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
   router.push(key)
 }
 </script>
-<style scoped="scss">
+<style>
 .gy-aside {
     width: 200px;
     background-color: #091328;
