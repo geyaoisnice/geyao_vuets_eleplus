@@ -12,7 +12,11 @@
                 </template>
                 <el-menu-item-group>
                     <template #title>用户</template>
-                    <el-menu-item index="/index/user">用户列表</el-menu-item>
+                    <el-menu-item index="/user">用户列表</el-menu-item>
+                </el-menu-item-group>
+                <el-menu-item-group>
+                <template #title>学校</template>
+                <el-menu-item index="/school">学校列表</el-menu-item>
                 </el-menu-item-group>
             </el-sub-menu>
         </el-menu>

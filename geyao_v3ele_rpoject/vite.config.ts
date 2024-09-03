@@ -3,10 +3,9 @@ import vue from '@vitejs/plugin-vue'
 // 模拟数据
 import { viteMockServe } from 'vite-plugin-mock'
 import path from 'path'
-// https://vitejs.dev/config/
-const pathResolve = (pathStr) => {
-  return path.resolve(__dirname, pathStr);
-};
+const resolve = (p: string) => {
+  return path.resolve(__dirname, p);
+}
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   return {
     plugins: [
@@ -19,9 +18,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       }),
     ],
     resolve: {
-      // 设置路径别名
       alias: {
-        "@": pathResolve("./src")
+        '@': resolve('./src')
       },
     },
   }

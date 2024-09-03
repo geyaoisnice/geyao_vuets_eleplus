@@ -1,9 +1,12 @@
 <template>
+  <!-- element plus card -->
     <ElCard>
+      <!-- element plus table -->
         <ElTable :data="tableList" style="width: 100%">
             <ElTableColumn :width="500" prop="username" label="Name" width="180" />
             <ElTableColumn :width="500" prop="password" label="Password" />
         </ElTable>
+         <!-- element plus 分页 -->
         <ElPagination
       v-model:current-page="currentPage"
       :size="pageSize"
@@ -24,6 +27,7 @@ const currentPage= ref(1)
 const pageSize= ref(10)
 const allPageData= ref([])
 const total= ref()
+// 查询数据
 const getList = async () => {
     let params = {
         pageIndex: currentPage.value,
@@ -33,12 +37,13 @@ const getList = async () => {
     total.value=res.data.data.total
     tableList.value = res.data.data.list
 }
+// size改变
 const onSizeChangeFn = (val) => {
   currentPage.value = 1
   pageSize.value = val
   getList()
 }
-
+// 分页改变
 const onPageChangeFn = (val) => {
   currentPage.value = val
   getList()

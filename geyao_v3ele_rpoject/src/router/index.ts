@@ -11,7 +11,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
     }
   },
   {
-    path: '/index',
+    path: '/',
     component: () => import('../views/Layout/index.vue'),
     name: 'Index',
     meta: {
@@ -19,9 +19,17 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
     },
     children: [
       {
-        path: '/index/user',
+        path: '/user',
         component: () => import('../views/User/index.vue'),
         name: 'User',
+        meta: {
+          hidden: true,
+        },
+      },
+      {
+        path: '/school',
+        component: () => import('../views/School/index.vue'),
+        name: 'Schhol',
         meta: {
           hidden: true,
         },
