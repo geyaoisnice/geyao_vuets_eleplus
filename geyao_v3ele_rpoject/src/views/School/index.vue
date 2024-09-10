@@ -4,6 +4,7 @@ import { getDataList } from "./api/index.ts"
 import { ElTable, ElTableColumn, ElCard, ElPagination, ElButton, ElDialog } from "element-plus"
 import SchoolAction from "./components/SchoolAction.vue"
 import GeyaoSearch from "../../component/GeyaoSearch.vue"
+import {SchoolType} from "./components/data.js"
 const tableList = ref([])
 const currentPage = ref(1)
 const pageSize = ref(10)
@@ -12,16 +13,28 @@ const total = ref()
 const dialog = ref(false)
 const datacolumn = [{
     type:"input",
-    field:"name"
+    field:"username",
+    label:"username"
 },{
     type:"select",
     field:"type",
+    label:"type",
+    options:SchoolType
+},{
+    type:"opration",
+    action:[{
+        name:"查询",
+    },{
+        name:"重置",
+        
+    }]
 }]
 // 查询数据
-const getList = async () => {
+const getList = async (data) => {
     let params = {
         pageIndex: currentPage.value,
         pageSize: pageSize.value,
+        ...data
     }
     let res = await getDataList(params)
     total.value = res.data.data.total
@@ -31,29 +44,38 @@ const getList = async () => {
 const onSizeChangeFn = (val) => {
     currentPage.value = 1
     pageSize.value = val
-    getList()
+    getList({})
 }
 // 分页改变
 const onPageChangeFn = (val) => {
     currentPage.value = val
-    getList()
+    getList({})
 
 }
 const handleAction = () => {
     dialog.value = true
 }
-getList()
+getList({})
+// 查询
+const handleSearch = (val)=>{
+    console.log(val,"val is")
+    getList(val)
+}
+const handleReset = (val)=>{
+    currentPage.value = 1
+    getList(val)
+}
 </script>
 <template>
-    <GeyaoSearch :columns="datacolumn"></GeyaoSearch>
+    <GeyaoSearch @search="handleSearch" @reset="handleReset" :columns="datacolumn"></GeyaoSearch>
     <!-- element plus card -->
     <ElCard>
         <!-- element plus table -->
         <ElTable :data="tableList" style="width: 100%">
             <ElTableColumn :width="500" prop="username" label="Name" width="180" />
             <ElTableColumn :width="500" prop="type" label="Type">
-                <template #default=row>
-                    {{ row.type === "0" ? "南方" : "北方" }}
+                <template #default={row}>
+                    {{ row.type === "1" ? "南方" : "北方" }}
                 </template>
             </ElTableColumn>
             <ElTableColumn prop="opration" label="opration">

@@ -33,6 +33,14 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
         meta: {
           hidden: true,
         },
+      },
+      {
+        path: '/tags',
+        component: () => import('../views/Tags/index.vue'),
+        name: 'Tags',
+        meta: {
+          hidden: true,
+        },
       }
     ]
   },

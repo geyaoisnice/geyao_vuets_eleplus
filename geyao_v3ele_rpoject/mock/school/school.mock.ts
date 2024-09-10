@@ -28,9 +28,10 @@ export default [
     url: '/mock/school/list',
     method: 'get',
     response: ({ query }) => {
-      const { username, pageIndex, pageSize } = query
+      const { username, pageIndex, pageSize,type } = query
       const mockList = List.filter((item) => {
         if (username && item.username.indexOf(username) < 0) return false
+        if (type && item.type.indexOf(type) < 0) return false
         return true
       })
       const pageList = mockList.filter(

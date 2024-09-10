@@ -18,6 +18,10 @@
                 <template #title>学校</template>
                 <el-menu-item index="/school">学校列表</el-menu-item>
                 </el-menu-item-group>
+                <el-menu-item-group>
+                <template #title>标签</template>
+                <el-menu-item index="/tags">标签管理</el-menu-item>
+                </el-menu-item-group>
             </el-sub-menu>
         </el-menu>
     </div>
