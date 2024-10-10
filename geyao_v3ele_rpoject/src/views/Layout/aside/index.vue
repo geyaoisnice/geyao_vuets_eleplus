@@ -22,6 +22,10 @@
                 <template #title>标签</template>
                 <el-menu-item index="/tags">标签管理</el-menu-item>
                 </el-menu-item-group>
+                <el-menu-item-group>
+                <template #title>弹框</template>
+                <el-menu-item index="/dialog">弹框管理</el-menu-item>
+                </el-menu-item-group>
             </el-sub-menu>
         </el-menu>
     </div>

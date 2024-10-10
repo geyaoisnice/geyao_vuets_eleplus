@@ -160,13 +160,12 @@ defineExpose({ openTagDialogFn })
       <ElSelect
         v-for="tagItem in tagList"
         v-show="isShowContactPropertyField(tagItem)"
+        multiple
         :key="tagItem.name"
         :value="tagItem.name"
         class="mb-4"
         v-model="formModel"
         @update:model-value="(v) => $emit('update:modelValue', v)"
-        color="primary"
-        hide-details
       >
         <template #label>
           <div

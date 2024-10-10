@@ -41,6 +41,14 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
         meta: {
           hidden: true,
         },
+      },
+      {
+        path: '/dialog',
+        component: () => import('../views/Dialog/index.vue'),
+        name: 'Dialog',
+        meta: {
+          hidden: true,
+        },
       }
     ]
   },
